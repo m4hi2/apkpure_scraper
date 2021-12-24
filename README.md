@@ -28,3 +28,14 @@ Even though google says this bot can't be spoofed because of IP verification, th
 doesn't seem to check the IPs.
 
 Filtering Sitemap urls `Enum.filter(fn {"loc", _, [url]} -> !String.contains?(url, ["group", "default", "tag", "topics"]) end)`
+
+Required Fields:
+
+- App name
+- Developer Name
+- Category
+- Version
+- App Description
+- Play Store Link
+- Images
+- App icon
