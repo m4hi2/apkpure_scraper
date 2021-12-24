@@ -58,14 +58,19 @@ defmodule ApkpureScraper.ApkpureSpider do
 
             category =
               document
-              |> Floki.find(".additional li:nth-child(1) span" )
+              |> Floki.find(".additional li:nth-child(1) span")
               |> tl()
               |> Floki.text()
 
-            item = %{app_name: app_name, author: author, category: category}
+            version =
+              document
+              |> Floki.find(".additional li:nth-child(2) p")
+              |> tl()
+              |> Floki.text()
+
+            item = %{app_name: app_name, author: author, category: category, version: version}
 
             %Crawly.ParsedItem{items: [item], requests: []}
-
         end
     end
   end
