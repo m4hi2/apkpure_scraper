@@ -15,15 +15,7 @@ defmodule ApkpureScraper.ApkpureSpider do
       "https://apkpure.com/sitemap.xml" ->
         {:ok, document} = Floki.parse_document(response.body)
 
-        requests =
-          document
-          |> Floki.find("loc")
-          |> Enum.filter(fn {_, _, [url]} ->
-            !String.contains?(url, ["group", "default", "tag", "topics"])
-          end)
-          |> Enum.map(fn {_, [], [url]} -> url end)
-          |> Enum.uniq()
-          |> Enum.map(&Crawly.Utils.request_from_url/1)
+        requests = ApkpureScraper.ApkpureSpider.Parsers.main_sitemap(document)
 
         %Crawly.ParsedItem{items: [], requests: requests}
 
