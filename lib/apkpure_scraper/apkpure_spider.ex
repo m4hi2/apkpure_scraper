@@ -71,9 +71,14 @@ defmodule ApkpureScraper.ApkpureSpider do
             playstore_link =
               document
               |> Floki.attribute(".additional li:nth-child(5) a", "href" )
-              |> Floki.text
+              |> Floki.text()
 
-            item = %{app_name: app_name, author: author, category: category, version: version, playstore_link: playstore_link}
+            app_description =
+              document
+              |> Floki.find(".description .content")
+              |> Floki.text()
+
+            item = %{app_name: app_name, author: author, category: category, version: version, playstore_link: playstore_link, app_description: app_description}
 
             %Crawly.ParsedItem{items: [item], requests: []}
         end
