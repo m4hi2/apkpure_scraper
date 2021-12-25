@@ -83,6 +83,10 @@ defmodule ApkpureScraper.ApkpureSpider do
               |> Floki.attribute(".icon img", "src")
               |> Floki.text()
 
+            images =
+              document
+              |> Floki.attribute(".amagnificpopup img", "src")
+
             item = %{
               app_name: app_name,
               author: author,
@@ -90,7 +94,8 @@ defmodule ApkpureScraper.ApkpureSpider do
               version: version,
               playstore_link: playstore_link,
               app_description: app_description,
-              app_icon: app_icon
+              app_icon: app_icon,
+              images: images
             }
 
             %Crawly.ParsedItem{items: [item], requests: []}
