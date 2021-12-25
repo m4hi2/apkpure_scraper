@@ -29,58 +29,7 @@ defmodule ApkpureScraper.ApkpureSpider do
           _anything_else ->
             {:ok, document} = Floki.parse_document(response.body)
 
-            app_name =
-              document
-              |> Floki.find(".title-like")
-              |> Floki.text()
-
-            author =
-              document
-              |> Floki.find(".details-author")
-              |> Floki.text()
-              |> String.trim()
-
-            category =
-              document
-              |> Floki.find(".additional li:nth-child(1) span")
-              |> tl()
-              |> Floki.text()
-
-            version =
-              document
-              |> Floki.find(".additional li:nth-child(2) p")
-              |> tl()
-              |> Floki.text()
-
-            playstore_link =
-              document
-              |> Floki.attribute(".additional li:nth-child(5) a", "href" )
-              |> Floki.text()
-
-            app_description =
-              document
-              |> Floki.find(".description .content")
-              |> Floki.text()
-
-            app_icon =
-              document
-              |> Floki.attribute(".icon img", "src")
-              |> Floki.text()
-
-            images =
-              document
-              |> Floki.attribute(".amagnificpopup img", "src")
-
-            item = %{
-              app_name: app_name,
-              author: author,
-              category: category,
-              version: version,
-              playstore_link: playstore_link,
-              app_description: app_description,
-              app_icon: app_icon,
-              images: images
-            }
+            item = ApkpureScraper.ApkpureSpider.Parsers.app_page(document)
 
             %Crawly.ParsedItem{items: [item], requests: []}
         end
