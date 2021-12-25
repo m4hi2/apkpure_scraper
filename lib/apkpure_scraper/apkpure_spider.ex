@@ -55,6 +55,7 @@ defmodule ApkpureScraper.ApkpureSpider do
               document
               |> Floki.find(".details-author")
               |> Floki.text()
+              |> String.trim()
 
             category =
               document
