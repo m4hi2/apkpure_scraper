@@ -25,7 +25,7 @@ defmodule ApkpureScraper.ApkpureSpider do
           |> Enum.uniq()
           |> Enum.map(&Crawly.Utils.request_from_url/1)
 
-        %Crawly.ParsedItem{items: [%{gg: "gg"}], requests: requests}
+        %Crawly.ParsedItem{items: [], requests: requests}
 
       _anything_else ->
         case String.contains?(url, ".xml.gz") do
@@ -41,7 +41,7 @@ defmodule ApkpureScraper.ApkpureSpider do
               |> Enum.uniq()
               |> Enum.map(&Crawly.Utils.request_from_url/1)
 
-            %Crawly.ParsedItem{items: [%{gg: "gg"}], requests: requests}
+            %Crawly.ParsedItem{items: [], requests: requests}
 
           _anything_else ->
             {:ok, document} = Floki.parse_document(response.body)
