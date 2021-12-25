@@ -27,6 +27,7 @@ defmodule ApkpureScraper.ApkpureSpider.Parsers do
       document
       |> Floki.find(".title-like")
       |> Floki.text()
+      |> String.trim()
 
     author =
       document
@@ -39,22 +40,26 @@ defmodule ApkpureScraper.ApkpureSpider.Parsers do
       |> Floki.find(".additional li:nth-child(1) span")
       |> tl()
       |> Floki.text()
+      |> String.trim()
 
     version =
       document
       |> Floki.find(".additional li:nth-child(2) p")
       |> tl()
       |> Floki.text()
+      |> String.trim()
 
     playstore_link =
       document
       |> Floki.attribute(".additional li:nth-child(5) a", "href")
       |> Floki.text()
+      |> String.trim()
 
     app_description =
       document
       |> Floki.find(".description .content")
       |> Floki.text()
+      |> String.trim()
 
     app_icon =
       document
