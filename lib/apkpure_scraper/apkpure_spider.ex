@@ -78,7 +78,20 @@ defmodule ApkpureScraper.ApkpureSpider do
               |> Floki.find(".description .content")
               |> Floki.text()
 
-            item = %{app_name: app_name, author: author, category: category, version: version, playstore_link: playstore_link, app_description: app_description}
+            app_icon =
+              document
+              |> Floki.attribute(".icon img", "src")
+              |> Floki.text()
+
+            item = %{
+              app_name: app_name,
+              author: author,
+              category: category,
+              version: version,
+              playstore_link: playstore_link,
+              app_description: app_description,
+              app_icon: app_icon
+            }
 
             %Crawly.ParsedItem{items: [item], requests: []}
         end
