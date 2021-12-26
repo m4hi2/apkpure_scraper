@@ -50,7 +50,7 @@ defmodule ApkpureScraper.ApkpureSpider.Parsers do
       |> Floki.attribute(".additional li:nth-child(5) a", "href")
       |> Floki.text()
       |> String.trim()
-      |> check_play_store_link()
+      |> filter_play_store_link()
 
     app_description =
       document
@@ -86,7 +86,7 @@ defmodule ApkpureScraper.ApkpureSpider.Parsers do
     |> Enum.map(&Crawly.Utils.request_from_url/1)
   end
 
-  defp check_play_store_link(link) do
+  defp filter_play_store_link(link) do
     case String.contains?(link, "play.google.com") do
       true ->
         link
