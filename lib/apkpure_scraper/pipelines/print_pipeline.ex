@@ -1,4 +1,4 @@
-defmodule ApkpureScraper.PrintPipeline do
+defmodule ApkpureScraper.Pipelines.PrintConsole do
   @behaviour Crawly.Pipeline
 
   @impl Crawly.Pipeline
