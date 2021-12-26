@@ -1,5 +1,14 @@
 import Config
 
+config :apkpure_scraper, ApkpureScraper.Repo,
+  database: "apkpure_scraper_repo",
+  username: System.get_env("DB_USER"),
+  password: System.get_env("DB_PASS"),
+  hostname: "localhost"
+
+config :apkpure_scraper,
+  ecto_repos: [ApkpureScraper.Repo]
+
 config :crawly,
   closespider_timeout: 10,
   middlewares: [
