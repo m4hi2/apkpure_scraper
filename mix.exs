@@ -23,7 +23,10 @@ defmodule ApkpureScraper.MixProject do
   defp deps do
     [
       {:crawly, "~> 0.13.0"},
-      {:floki, "~> 0.32.0"}
+      {:floki, "~> 0.32.0"},
+      {:postgrex, "~> 0.15.13"},
+      {:ecto, "~> 3.7"},
+      {:ecto_sql, "~> 3.7"}
     ]
   end
 end
