@@ -10,6 +10,7 @@ defmodule ApkpureScraper.Application do
     children = [
       # Starts a worker by calling: ApkpureScraper.Worker.start_link(arg)
       # {ApkpureScraper.Worker, arg}
+      {ApkpureScraper.Repo, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
