@@ -16,6 +16,7 @@ config :crawly,
   ],
   pipelines: [
     {ApkpureScraper.Pipelines.PrintConsole},
+    {ApkpureScraper.Pipelines.InsertToDB},
     Crawly.Pipelines.JSONEncoder,
     {Crawly.Pipelines.WriteToFile, extension: "jl", folder: "/tmp", include_timestamp: true}
   ]
