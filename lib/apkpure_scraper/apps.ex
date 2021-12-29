@@ -4,6 +4,13 @@ defmodule ApkpureScraper.Apps do
   alias ApkpureScraper.Repo
   alias ApkpureScraper.Apps.App
 
+  def create_app(app) do
+    %App{}
+    |> App.changeset(app)
+    |> Repo.insert()
+
+  end
+
   def filter_only_with_play_link() do
     App
     |> app_playstore_link_query()

@@ -4,11 +4,11 @@ defmodule ApkpureScraper.Pipelines.InsertToDB do
   """
   @behaviour Crawly.Pipeline
 
+  alias ApkpureScraper.Apps
+
   @impl Crawly.Pipeline
   def run(item, state, _opts \\ []) do
-    %ApkpureScraper.Apps.App{}
-    |> ApkpureScraper.Apps.App.changeset(item)
-    |> ApkpureScraper.Repo.insert()
+    Apps.create_app(item)
 
     {item, state}
   end
